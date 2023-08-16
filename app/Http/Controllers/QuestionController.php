@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Test;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
-class TestController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tests = Test::all();
-        $tests->load('user');
-        $tests->load('questions');
-        return response()->json($tests);
+        $questions = Question::all();
+        $questions->load('test');
+        return response()->json($questions);
     }
 
     /**
@@ -37,7 +36,7 @@ class TestController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Test $test)
+    public function show(Question $question)
     {
         //
     }
@@ -45,7 +44,7 @@ class TestController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Test $test)
+    public function edit(Question $question)
     {
         //
     }
@@ -53,7 +52,7 @@ class TestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Test $test)
+    public function update(Request $request, Question $question)
     {
         //
     }
@@ -61,7 +60,7 @@ class TestController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Test $test)
+    public function destroy(Question $question)
     {
         //
     }
