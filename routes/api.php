@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
@@ -26,3 +27,4 @@ Route::resource('users', UserController::class);
 Route::resource('students', StudentController::class);
 Route::resource('groups', GroupController::class);
 Route::resource('tests', TestController::class);
+Route::resource('questions', QuestionController::class);
