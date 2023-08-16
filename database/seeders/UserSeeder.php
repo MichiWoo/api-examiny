@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
+        
 
         $plans = Plan::all();
         $randomPlan = $plans->random();
