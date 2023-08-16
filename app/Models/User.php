@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function plan() {
         return $this->belongsTo(Plan::class);
     }
+
+    public function groups(){
+        return $this->hasMany(Group::class);
+    }
 }
