@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Plan;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,14 +18,16 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        
+
+        $plans = Plan::all();
+        $randomPlan = $plans->random();
+
         $user = User::create([
             'name' => $faker->name(),
             'email' => $faker->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'plan_id' => $randomPlan->id,
             'password' => Hash::make('secret'),
-            'plan' => $faker->numberBetween(1,3),
-            'status' => $faker->numberBetween(1,2),
             'avatar' => $faker->imageUrl(200, 200, 'people')
         ]);
     }
