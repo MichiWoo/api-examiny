@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\StudentController;
@@ -28,3 +29,4 @@ Route::resource('students', StudentController::class);
 Route::resource('groups', GroupController::class);
 Route::resource('tests', TestController::class);
 Route::resource('questions', QuestionController::class);
+Route::resource('answers', AnswerController::class);
