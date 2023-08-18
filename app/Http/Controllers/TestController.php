@@ -14,7 +14,7 @@ class TestController extends Controller
     {
         $tests = Test::all();
         $tests->load('user');
-        $tests->load('questions');
+        $tests->load('groups');
         return response()->json($tests);
     }
 
