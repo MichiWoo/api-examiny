@@ -72,6 +72,44 @@ class QuestionSeeder extends Seeder
             'type' => 1,
             'test_id' => 3
         ]);
+
+        Question::create([
+            'description' => '¿Qué es un círculo?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 4
+        ]);
+        Question::create([
+            'description' => '¿Qué es un cuadrado?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 4
+        ]);
+        Question::create([
+            'description' => '¿Qué es un triángulo?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 4
+        ]);
+        
+        Question::create([
+            'description' => '¿Qué es un continente?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 5
+        ]);
+        Question::create([
+            'description' => '¿Qué es una isla?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 5
+        ]);
+        Question::create([
+            'description' => '¿Qué es una cordillera?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 5
+        ]);
         
     }
 }

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             GroupSeeder::class,
             TestSeeder::class,
             QuestionSeeder::class,
-            #AnswerSeeder::class,
+            AnswerSeeder::class,
             #StudentGroupSeeder::class,
             #GroupTestSeeder::class,
             #StudentTestSeeder::class,
