@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Group;
 use App\Models\Student;
+use App\Models\Test;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,33 +15,37 @@ class StudentAnswerSeeder extends Seeder
      */
     public function run(): void
     {
-        #   Por cada grupo, encontrar los examenes
-        $groups = Group::all();
-
-        foreach ($groups as $group) {
-            $tests_of_group =  $group->tests();
-            $students_of_group = $group->students();
-            
-            #   Por cada examen encontrar las preguntas
-            foreach ($tests_of_groups as $test) {
-                $questions_of_test = $test->questions();
+        #   Por cada examen, encontrar los grupos y preguntas
+        $tests = Test::all();
+        foreach ($tests as $test) {
+            $groups_of_test = $test->groups();
+            if ($groups_of_test) {
                 
-                #   Por cada pregunta responder para cada student
-                foreach ($questions_of_test as $question) {
-                    $anwsers_of_question = $question->answers();
+                $quesions_of_test = $test->questions();
+    
+                #   Por cada grupo encontrar usuarios
+                foreach ($groups_of_test as $group) {
+                    if ($group) {
+                        $students_of_group = $group->students();
+                        if ($students_of_group) {
+                            #   Por cada usuario contestar todas las preguntas del usuario
+                            foreach ($students_of_group as $student) {
+                                foreach ($quesions_of_test as $question) {
+                                    #   Obtener las respuestas de la pregunta y escoger una para el usuario
+                                    $answers_of_question = $question->answers();
+                                    $randoAnswer = $answers_of_question->random();
+            
+                                    $student->anwers()->attach($randoAnswer);
+                                }    
+                            }
+                        }
 
-                    foreach ($students_of_group as $student) {
-                        $randomAnswer = $anwsers_of_question->random();
-                        $student->answers()->attach($randomAnswer);
                     }
                 }
             }
         }
 
-        $students = Student::all();
 
-        foreach ($students as $student) {
-            $groups_of_student = $student->groups()
-        }
+        
     }
 }

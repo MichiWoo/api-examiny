@@ -23,7 +23,11 @@ class Student extends Model
         return $this->belongsToMany(Group::class);
     }
 
+    public function tests() {
+        return $this->belongsToMany(Test::class);
+    }
+
     public function answers() {
-        return $this->belongsToMany(Answer::class);
+        return $this->belongsToMany(Answer::class, 'answer_student');
     }
 }

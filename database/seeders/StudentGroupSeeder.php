@@ -17,9 +17,11 @@ class StudentGroupSeeder extends Seeder
         $students = Student::all();
         $groups = Group::all();
 
-        foreach ($students as $student) {
-            $randomGroup = $groups->random();
-            $randomGroup->students()->attach($student);
+        foreach ($groups as $group) {
+            for ($i=0; $i < 5; $i++) { 
+                $randomStudent = $students->random();
+                $randomStudent->groups()->attach($group);
+            }
         }
     }
 }
