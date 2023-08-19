@@ -6,7 +6,6 @@ use App\Models\Group;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
 class GroupSeeder extends Seeder
 {
@@ -15,16 +14,23 @@ class GroupSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
 
-        $users = User::all();
+        $user = User::where('id', 1)->first();
+        
+        Group::create([
+            'name' => 'Español',
+            'user_id' => $user->id,
+        ]);
+        
+        Group::create([
+            'name' => 'Matemáticas',
+            'user_id' => $user->id,
+        ]);
+        
+        Group::create([
+            'name' => 'Geografía',
+            'user_id' => $user->id,
+        ]);
 
-        for ($i=0; $i < 10; $i++) { 
-            $randomUser = $users->random();
-            Group::create([
-                'name' => $faker->jobTitle(),
-                'user_id' => $randomUser->id
-            ]);
-        }
     }
 }
