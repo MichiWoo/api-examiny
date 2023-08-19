@@ -19,40 +19,46 @@ class TestSeeder extends Seeder
 
         $user = User::where('id', 1)->first();
 
-        Test::create([
+        $test1 = Test::create([
             'name' => 'Español 1 - Unidad 1',
             'image' => $faker->imageUrl(200, 200, 'people'),
             'duration' => $faker->numberBetween(30, 90),
             'user_id' => $user->id
         ]);
 
-        Test::create([
+        $test2 = Test::create([
             'name' => 'Español 1 - Unidad 2',
             'image' => $faker->imageUrl(200, 200, 'people'),
             'duration' => $faker->numberBetween(30, 90),
             'user_id' => $user->id
         ]);
 
-        Test::create([
+        $test3 = Test::create([
             'name' => 'Matemáticas 1 - Unidad 1',
             'image' => $faker->imageUrl(200, 200, 'people'),
             'duration' => $faker->numberBetween(30, 90),
             'user_id' => $user->id
         ]);
 
-        Test::create([
+        $test4 = Test::create([
             'name' => 'Matemáticas 1 - Unidad 2',
             'image' => $faker->imageUrl(200, 200, 'people'),
             'duration' => $faker->numberBetween(30, 90),
             'user_id' => $user->id
         ]);
 
-        Test::create([
+        $test5 = Test::create([
             'name' => 'Geografía 1 - Unidad 1',
             'image' => $faker->imageUrl(200, 200, 'people'),
             'duration' => $faker->numberBetween(30, 90),
             'user_id' => $user->id
         ]);
         
+        $test1->groups()->attach(1);
+        $test2->groups()->attach(1);
+        $test3->groups()->attach(2);
+        $test4->groups()->attach(2);
+        $test5->groups()->attach(3);
+
     }
 }

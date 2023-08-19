@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             TestSeeder::class,
             QuestionSeeder::class,
             AnswerSeeder::class,
-            #GroupTestSeeder::class,
             #StudentTestSeeder::class,
             #StudentAnswerSeeder::class,
         ]);
