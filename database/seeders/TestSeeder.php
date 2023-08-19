@@ -17,16 +17,42 @@ class TestSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        $users = User::all();
+        $user = User::where('id', 1)->first();
 
-        for ($i=0; $i < 5; $i++) { 
-            $randomUser = $users->random();
-            Test::create([
-                'name' => $faker->name(),
-                'image' => $faker->imageUrl(200, 200, 'people'),
-                'duration' => $faker->numberBetween(30, 90),
-                'user_id' => $randomUser->id
-            ]);
-        }
+        Test::create([
+            'name' => 'Español 1 - Unidad 1',
+            'image' => $faker->imageUrl(200, 200, 'people'),
+            'duration' => $faker->numberBetween(30, 90),
+            'user_id' => $user->id
+        ]);
+
+        Test::create([
+            'name' => 'Español 1 - Unidad 2',
+            'image' => $faker->imageUrl(200, 200, 'people'),
+            'duration' => $faker->numberBetween(30, 90),
+            'user_id' => $user->id
+        ]);
+
+        Test::create([
+            'name' => 'Matemáticas 1 - Unidad 1',
+            'image' => $faker->imageUrl(200, 200, 'people'),
+            'duration' => $faker->numberBetween(30, 90),
+            'user_id' => $user->id
+        ]);
+
+        Test::create([
+            'name' => 'Matemáticas 1 - Unidad 2',
+            'image' => $faker->imageUrl(200, 200, 'people'),
+            'duration' => $faker->numberBetween(30, 90),
+            'user_id' => $user->id
+        ]);
+
+        Test::create([
+            'name' => 'Geografía 1 - Unidad 1',
+            'image' => $faker->imageUrl(200, 200, 'people'),
+            'duration' => $faker->numberBetween(30, 90),
+            'user_id' => $user->id
+        ]);
+        
     }
 }
