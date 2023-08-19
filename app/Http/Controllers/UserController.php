@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        $users->load('tests');
+        $users->load('students');
         return response()->json($users);
     }
 

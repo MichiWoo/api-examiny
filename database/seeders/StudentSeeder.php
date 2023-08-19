@@ -15,18 +15,27 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = User::where('id', 1)->first();
+        
         $faker = Faker::create();
 
-        $users = User::all();
+        $student1 = Student::create([
+            'name' => $faker->name(),
+            'email' => $faker->unique()->safeEmail(),
+            'user_id' => $user->id
+        ]);
 
-        for ($i=0; $i < 10; $i++) { 
-            $randomUser = $users->random();
-            Student::create([
-                'name' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'user_id' => $randomUser->id
-            ]);
-        }
+        $student2 = Student::create([
+            'name' => $faker->name(),
+            'email' => $faker->unique()->safeEmail(),
+            'user_id' => $user->id
+        ]);
+
+        $student3 = Student::create([
+            'name' => $faker->name(),
+            'email' => $faker->unique()->safeEmail(),
+            'user_id' => $user->id
+        ]);
 
     }
 }

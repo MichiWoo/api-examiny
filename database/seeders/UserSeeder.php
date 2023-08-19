@@ -24,10 +24,10 @@ class UserSeeder extends Seeder
         $randomPlan = $plans->random();
 
         $user = User::create([
-            'name' => $faker->name(),
-            'email' => $faker->unique()->safeEmail(),
+            'name' => 'Michel González Morales',
+            'email' => 'michiwoo.web@gmail.com',
             'email_verified_at' => now(),
-            'plan_id' => $randomPlan->id,
+            'plan_id' => 1,
             'password' => Hash::make('secret'),
             'avatar' => $faker->imageUrl(200, 200, 'people')
         ]);

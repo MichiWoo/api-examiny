@@ -16,14 +16,14 @@ class DatabaseSeeder extends Seeder
             PlanSeeder::class,
             UserSeeder::class,
             StudentSeeder::class,
-            GroupSeeder::class,
-            TestSeeder::class,
-            QuestionSeeder::class,
-            AnswerSeeder::class,
-            StudentGroupSeeder::class,
-            GroupTestSeeder::class,
-            StudentTestSeeder::class,
-            StudentAnswerSeeder::class,
+            #GroupSeeder::class,
+            #TestSeeder::class,
+            #QuestionSeeder::class,
+            #AnswerSeeder::class,
+            #StudentGroupSeeder::class,
+            #GroupTestSeeder::class,
+            #StudentTestSeeder::class,
+            #StudentAnswerSeeder::class,
         ]);
     }
 }
