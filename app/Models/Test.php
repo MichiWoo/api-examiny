@@ -27,4 +27,8 @@ class Test extends Model
     public function groups() {
         return $this->belongsToMany(Group::class);
     }
+
+    public function students() {
+        return $this->belongsToMany(Student::class);
+    }
 }
