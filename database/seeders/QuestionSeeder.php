@@ -17,16 +17,61 @@ class QuestionSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        $tests = Test::all();
+        Question::create([
+            'description' => '¿Qué es un diptongo?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 1
+        ]);
+        Question::create([
+            'description' => '¿Qué es un triptongo?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 1
+        ]);
+        Question::create([
+            'description' => '¿Qué es una sílaba?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 1
+        ]);
 
-        for ($i=0; $i < 50; $i++) { 
-            $randomTest = $tests->random();
-            Question::create([
-                'description' => $faker->text(70),
-                'image' => $faker->imageUrl(640, 480),
-                'type' => $faker->numberBetween(1, 2),
-                'test_id' => $randomTest->id
-            ]);
-        }
+        Question::create([
+            'description' => '¿Qué es un verbo?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 2
+        ]);
+        Question::create([
+            'description' => '¿Qué es un sinónimo?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 2
+        ]);
+        Question::create([
+            'description' => '¿Qué es una antónimo?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 2
+        ]);
+        Question::create([
+            'description' => '¿Qué es un entero?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 3
+        ]);
+        Question::create([
+            'description' => '¿Qué es una fracción?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 3
+        ]);
+        Question::create([
+            'description' => '¿Qué es un número primo?',
+            'image' => $faker->imageUrl(640, 480),
+            'type' => 1,
+            'test_id' => 3
+        ]);
+        
     }
 }

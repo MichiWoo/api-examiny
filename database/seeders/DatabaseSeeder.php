@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             GroupSeeder::class,
             TestSeeder::class,
-            #QuestionSeeder::class,
+            QuestionSeeder::class,
             #AnswerSeeder::class,
             #StudentGroupSeeder::class,
             #GroupTestSeeder::class,
