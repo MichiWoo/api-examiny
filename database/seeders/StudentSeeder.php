@@ -37,5 +37,9 @@ class StudentSeeder extends Seeder
             'user_id' => $user->id
         ]);
 
+        $student1->groups()->attach([1,2]);
+        $student2->groups()->attach([1,3]);
+        $student3->groups()->attach([3]);
+
     }
 }

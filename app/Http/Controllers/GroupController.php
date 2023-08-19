@@ -13,7 +13,7 @@ class GroupController extends Controller
     public function index()
     {
         $groups = Group::all();
-        $groups->load('user');
+        $groups->load('students');
         return response()->json($groups);
     }
 
