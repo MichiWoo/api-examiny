@@ -13,8 +13,21 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        $users->load('tests');
-        return response()->json($users);
+        $data = [];
+
+        foreach ($users as $user) {
+            $userData = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'roles' => $user->getRoleNames(),
+                'permissions' => $user->getAllPermissions()->pluck('name'),
+            ];
+
+        $data[] = $userData;
+        }
+
+        return response()->json($data);
     }
 
     /**
