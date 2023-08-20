@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Group;
 use App\Models\Test;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,23 +14,49 @@ class StudentTestSeeder extends Seeder
      */
     public function run(): void
     {
-        #   Obtener todos los examenes
-        $tests = Test::all();
+        #   Obtener todos los grupos
 
-        foreach ($tests as $test) {
-            #   Obtener los grupos de los exámenes
-            $groups_of_test = $test->groups();
+        $test1 = Test::where('id', 1)->first();
+        $test2 = Test::where('id', 2)->first();
+        $test3 = Test::where('id', 3)->first();
+        $test4 = Test::where('id', 4)->first();
+        $test5 = Test::where('id', 5)->first();
 
-            #   Obtener los alumnos del grupo
-            foreach ($groups_of_test as $group) {
-                if ($group) {
-                    $students_of_group = $group->students();
-                    #   Crear el examen para cada alumno
-                    foreach ($students_of_group as $student) {
-                        $student->tests()->attach();
-                    }
-                }
 
+        $group_test1 = $test1->groups;
+        $group_test2 = $test2->groups;
+        $group_test3 = $test3->groups;
+        $group_test4 = $test4->groups;
+        $group_test5 = $test5->groups;
+        
+        foreach ($group_test1 as $grupo) {
+            $students_grupo = $grupo->students;
+            foreach ($students_grupo as $student) {
+                $student->tests()->attach($test1);
+            }
+        }
+        foreach ($group_test2 as $grupo) {
+            $students_grupo = $grupo->students;
+            foreach ($students_grupo as $student) {
+                $student->tests()->attach($test2);
+            }
+        }
+        foreach ($group_test3 as $grupo) {
+            $students_grupo = $grupo->students;
+            foreach ($students_grupo as $student) {
+                $student->tests()->attach($test3);
+            }
+        }
+        foreach ($group_test4 as $grupo) {
+            $students_grupo = $grupo->students;
+            foreach ($students_grupo as $student) {
+                $student->tests()->attach($test4);
+            }
+        }
+        foreach ($group_test5 as $grupo) {
+            $students_grupo = $grupo->students;
+            foreach ($students_grupo as $student) {
+                $student->tests()->attach($test5);
             }
         }
     }

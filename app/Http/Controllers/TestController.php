@@ -13,7 +13,6 @@ class TestController extends Controller
     public function index()
     {
         $tests = Test::all();
-        $tests->load('user');
         $tests->load('groups');
         return response()->json($tests);
     }
