@@ -13,7 +13,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        $students->load('groups');
+        $students->load('tests');
         return response()->json($students);
     }
 

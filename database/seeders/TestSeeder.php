@@ -59,6 +59,5 @@ class TestSeeder extends Seeder
         $test3->groups()->attach(2);
         $test4->groups()->attach(2);
         $test5->groups()->attach(3);
-
     }
 }
