@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponder;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -17,17 +18,7 @@ class UserController extends Controller
         $users = User::all();
         $data = [];
 
-        foreach ($users as $user) {
-            $userData = [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'roles' => $user->getRoleNames(),
-                'permissions' => $user->getAllPermissions()->pluck('name'),
-            ];
-
-            $data[] = $userData;
-        }
+        $data = UserResource::collection($users);
 
         return $this->success('Información consultada correctamente', $data, 200);
     }
