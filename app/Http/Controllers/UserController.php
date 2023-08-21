@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Traits\ApiResponder;
 
 class UserController extends Controller
 {
+    use ApiResponder;
     /**
      * Display a listing of the resource.
      */
@@ -24,10 +26,10 @@ class UserController extends Controller
                 'permissions' => $user->getAllPermissions()->pluck('name'),
             ];
 
-        $data[] = $userData;
+            $data[] = $userData;
         }
 
-        return response()->json($data);
+        return $this->success('Información consultada correctamente', $data, 200);
     }
 
     /**

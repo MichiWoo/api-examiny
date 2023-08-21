@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
 
         $user1 = User::create([
             'name' => 'Michel González Morales',
-            'email' => 'michiwoo.web@gmail.com',
+            'email' => 'examiny_admin@gmail.com',
             'email_verified_at' => now(),
             'plan_id' => 1,
             'password' => Hash::make('secret'),
