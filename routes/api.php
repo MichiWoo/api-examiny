@@ -24,9 +24,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('users', UserController::class);
-Route::resource('students', StudentController::class);
-Route::resource('groups', GroupController::class);
-Route::resource('tests', TestController::class);
-Route::resource('questions', QuestionController::class);
-Route::resource('answers', AnswerController::class);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    // Tus rutas protegidas aquí
+    Route::resource('users', UserController::class);
+    Route::resource('students', StudentController::class);
+    Route::resource('groups', GroupController::class);
+    Route::resource('tests', TestController::class);
+    Route::resource('questions', QuestionController::class);
+    Route::resource('answers', AnswerController::class);
+});

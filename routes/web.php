@@ -5,6 +5,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,13 +38,15 @@ Route::get('/google-auth/callback', function () {
         'avatar' => $user_google->avatar
     ]);
 
+
     Auth::login($user);
-    $user->assignRole('user');
+
+    $role = Role::findByName('user', 'api');
+    $user->assignRole($role);
     $tokenName = null;
     $tz = config('app.timezone');
     $now = Carbon::now($tz);
-    $ahora = $now->format('Y-m-d H:i:s');
-    $minutesToAdd = config('sanctum.expiration');
+    $minutesToAdd = config('sanctum.expiration') * 60;
     $tokenName = 'user_auth_token' . $now->format('YmdHis');
     $token = $user->createToken($tokenName, $user->getAllPermissionsSlug()->toArray(), $now->addMinutes($minutesToAdd));
     $user->access_token = $token->plainTextToken;
