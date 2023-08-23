@@ -74,6 +74,6 @@ class User extends Authenticatable
     {
         return $this->roles->map(function ($role) {
             return $role->permissions;
-        })->collapse()->pluck('description')->unique();
+        })->collapse()->pluck('name')->unique();
     }
 }
