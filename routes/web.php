@@ -52,8 +52,14 @@ Route::get('/google-auth/callback', function () {
     $user->access_token = $token->plainTextToken;
     $user->sign_in_at =  $token->accessToken->created_at->format('Y-m-d H:i:s');
     $user->sign_in_expires_at =  $token->accessToken->expires_at->format('Y-m-d H:i:s');
-    return response(['user' => Auth::user()]);
 
-
-    // $user->token
+    $url = env('APP_URL');
+    $key = env('APP_KEY');
+    // Generar un token único
+    $token = $user_google->token;
+    // Encriptar el token
+    $encriptedToken = base64_encode($token);
+    // Crear el enlace con el token encriptado
+    $link = $url . "/dashboard/" . urlencode($encriptedToken);
+    return redirect()->away($link);
 });
