@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponder;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -69,5 +70,24 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function desencriptarToken(Request $request)
+    {
+        $token = $request->token;
+        $token_desencriptado = base64_decode(urldecode($token));
+        $key = env('SECRET');
+        $result = str_replace($key, "", $token_desencriptado);
+        $parts = explode(":", $result);
+        $google_id = $parts[1];
+        $token = $parts[2];
+        $user = User::where('google_id', $google_id)->first();
+
+        $data = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return $this->success('Usuario ha ingresado correctamente', $data, 200);
     }
 }
