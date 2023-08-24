@@ -54,9 +54,9 @@ Route::get('/google-auth/callback', function () {
     $user->sign_in_expires_at =  $token->accessToken->expires_at->format('Y-m-d H:i:s');
 
     $url = env('APP_URL');
-    $key = env('APP_KEY');
+    $key = env('SECRET');
     // Generar un token único
-    $token = $user_google->token;
+    $token = $key . ":". $user_google->id . ":" . $user->access_token;
     // Encriptar el token
     $encriptedToken = base64_encode($token);
     // Crear el enlace con el token encriptado

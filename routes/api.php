@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('activy_token', [UserController::class, 'desencriptarToken']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // Tus rutas protegidas aquí
     Route::resource('users', UserController::class);
