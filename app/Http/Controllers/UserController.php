@@ -90,4 +90,10 @@ class UserController extends Controller
 
         return $this->success('Usuario ha ingresado correctamente', $data, 200);
     }
+
+    public function logout() {
+        $user = auth('sanctum')->user();
+        $user->currentAccessToken()->delete();
+        return $this->success('Cierre de sesión exitoso.');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
+use App\Models\User;
 use App\Traits\ApiResponder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,10 +14,13 @@ class StudentController extends Controller
     use ApiResponder;
 
     public function index()
-    {
-        $students = Student::all();
-        $students->load('answers');
-        return response()->json($students);
+    {   
+        $userAuth = auth('sanctum')->user();
+        $students = Student::where('user_id', $userAuth['id'])->get();
+        
+        $data = StudentResource::collection($students);
+
+        return $this->success('Información consultada correctamente', $data, 200);
     }
 
     
@@ -26,7 +30,6 @@ class StudentController extends Controller
             $rules = [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:students',
-                'user_id' => 'required|numeric',
             ];
 
             $validator = Validator::make( $request->all(), $rules, $messages = [
@@ -42,7 +45,13 @@ class StudentController extends Controller
                 return $this->error("Error al actualizar el registro", $errors);
             }
 
-            $student = new Student($request->all());
+            $userAuth = auth('sanctum')->user();
+
+            $student = new Student([
+                'name' => $request->name,
+                'email' => $request->email,
+                'user_id' => $userAuth['id']
+            ]);
             $student->save();
 
             $resource = new StudentResource($student);
@@ -60,7 +69,8 @@ class StudentController extends Controller
     {
         try {
 
-            $student = Student::where('id', $id_student)->first();
+            $userAuth = auth('sanctum')->user();
+            $student = Student::where('id', $id_student)->where('user_id', $userAuth['id'])->first();
 
             if ($student == NULL)
             {
@@ -98,8 +108,9 @@ class StudentController extends Controller
                 $errors = $validator->errors()->all();
                 return $this->error("Error al actualizar el registro", $errors);
             }
-
-            $student = Student::where('id', $id_student)->first();
+            
+            $userAuth = auth('sanctum')->user();
+            $student = Student::where('id', $id_student)->where('user_id', $userAuth['id'])->first();
             
             if ($student == NULL)
             {
@@ -123,7 +134,8 @@ class StudentController extends Controller
     {
         try {
 
-            $student = Student::where('id', $id_student)->first();
+            $userAuth = auth('sanctum')->user();
+            $student = Student::where('id', $id_student)->where('user_id', $userAuth['id'])->first();
             
             if ($student == NULL)
             {

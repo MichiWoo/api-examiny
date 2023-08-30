@@ -18,9 +18,9 @@ class StudentResource extends JsonResource
             'id' => $this->id,
             'nombre' => $this->name,
             'email' => $this->email,
-            'usuario' => $this->user,
-            'creado' => $this->creado,
-            'actualizado' => $this->actualizado,
+            'usuario' => new UserResource($this->user),
+            'creado' => date_format($this->created_at, 'Y-m-d H:m:s'),
+            'actualizado' => date_format($this->updated_at, 'Y-m-d H:m:s')
         ];
         return $data;
     }

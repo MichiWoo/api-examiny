@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('activy_token', [UserController::class, 'desencriptarToken']);
+Route::post('logout', [UserController::class, 'logout']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // Tus rutas protegidas aquí

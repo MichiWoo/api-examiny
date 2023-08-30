@@ -46,12 +46,10 @@ Route::get('/google-auth/callback', function () {
     $tokenName = null;
     $tz = config('app.timezone');
     $now = Carbon::now($tz);
-    $minutesToAdd = config('sanctum.expiration') * 60;
     $tokenName = 'user_auth_token' . $now->format('YmdHis');
-    $token = $user->createToken($tokenName, $user->getAllPermissionsSlug()->toArray(), $now->addMinutes($minutesToAdd));
+    $token = $user->createToken($tokenName, $user->getAllPermissionsSlug()->toArray());
     $user->access_token = $token->plainTextToken;
     $user->sign_in_at =  $token->accessToken->created_at->format('Y-m-d H:i:s');
-    $user->sign_in_expires_at =  $token->accessToken->expires_at->format('Y-m-d H:i:s');
 
     $url = env('APP_URL');
     $key = env('SECRET');
