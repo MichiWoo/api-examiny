@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
-use App\Models\User;
 use App\Traits\ApiResponder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -61,7 +60,7 @@ class StudentController extends Controller
             ]);
 
         } catch (\Throwable $th) {
-            return $this->error("Error al registrar el registro, error:{$th->getMessage()}.");
+            return $this->error("Error al registrar el estudiante, error:{$th->getMessage()}.");
         }
     }
 
@@ -79,7 +78,7 @@ class StudentController extends Controller
             
             $resource = new StudentResource($student);
     
-            return $this->success('Estudiante actualizado correctamente.', [
+            return $this->success('Información consultada correctamente.', [
                 'estudiante' => $resource
             ]);
 
