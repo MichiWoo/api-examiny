@@ -41,7 +41,7 @@ class StudentController extends Controller
 
             if ($validator->fails()) {
                 $errors = $validator->errors()->all();
-                return $this->error("Error al actualizar el registro", $errors);
+                return $this->error("Error al crear el registro", $errors);
             }
 
             $userAuth = auth('sanctum')->user();
