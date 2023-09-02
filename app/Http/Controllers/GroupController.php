@@ -45,7 +45,7 @@ class GroupController extends Controller
 
             if ($validator->fails()) {
                 $errors = $validator->errors()->all();
-                return $this->error("Error al actualizar el registro", $errors);
+                return $this->error("Error al crear el registro", $errors);
             }
 
             $userAuth = auth('sanctum')->user();
@@ -84,7 +84,7 @@ class GroupController extends Controller
             $resource = new GruopResource($group);
     
             return $this->success('Información consultada correctamente.', [
-                'grupos' => $resource
+                'grupo' => $resource
             ]);
 
         } catch (\Throwable $th) {
