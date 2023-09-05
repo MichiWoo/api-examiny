@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QuestionResource;
 use App\Models\Question;
+use App\Traits\ApiResponder;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+    use ApiResponder;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $questions = Question::all();
-        $questions->load('test');
-        $questions->load('answers');
-        return response()->json($questions);
+        $userAuth = auth('sanctum')->user();
+        $questions = Question::where('user_id', $userAuth['id'])->get();
+        
+        $data = QuestionResource::collection($questions);
+
+        return $this->success('Información consultada correctamente', $data, 200);
     }
 
     /**
