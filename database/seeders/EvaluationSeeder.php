@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Evaluation;
 use App\Models\Group;
 use App\Models\Test;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class StudentTestSeeder extends Seeder
+class EvaluationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -32,31 +33,46 @@ class StudentTestSeeder extends Seeder
         foreach ($group_test1 as $grupo) {
             $students_grupo = $grupo->students;
             foreach ($students_grupo as $student) {
-                $student->tests()->attach($test1);
+                Evaluation::create([
+                    'student_id' => $student->id,
+                    'test_id' => 1,
+                ]);
             }
         }
         foreach ($group_test2 as $grupo) {
             $students_grupo = $grupo->students;
             foreach ($students_grupo as $student) {
-                $student->tests()->attach($test2);
+                Evaluation::create([
+                    'student_id' => $student->id,
+                    'test_id' => 2,
+                ]);
             }
         }
         foreach ($group_test3 as $grupo) {
             $students_grupo = $grupo->students;
             foreach ($students_grupo as $student) {
-                $student->tests()->attach($test3);
+                Evaluation::create([
+                    'student_id' => $student->id,
+                    'test_id' => 3,
+                ]);
             }
         }
         foreach ($group_test4 as $grupo) {
             $students_grupo = $grupo->students;
             foreach ($students_grupo as $student) {
-                $student->tests()->attach($test4);
+                Evaluation::create([
+                    'student_id' => $student->id,
+                    'test_id' => 4,
+                ]);
             }
         }
         foreach ($group_test5 as $grupo) {
             $students_grupo = $grupo->students;
             foreach ($students_grupo as $student) {
-                $student->tests()->attach($test5);
+                Evaluation::create([
+                    'student_id' => $student->id,
+                    'test_id' => 5,
+                ]);
             }
         }
     }

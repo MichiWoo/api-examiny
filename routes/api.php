@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\StudentController;
@@ -9,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
+use App\Models\Evaluation;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,4 +38,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('tests', TestController::class);
     Route::resource('questions', QuestionController::class);
     Route::resource('answers', AnswerController::class);
+    Route::resource('evaluations', EvaluationController::class);
 });

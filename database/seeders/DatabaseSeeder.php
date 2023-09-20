@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Evaluation;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,8 +22,8 @@ class DatabaseSeeder extends Seeder
             TestSeeder::class,
             QuestionSeeder::class,
             AnswerSeeder::class,
-            StudentTestSeeder::class,
-            StudentAnswerSeeder::class,
+            EvaluationSeeder::class,
+            EvaluationAnswerSeeder::class,
         ]);
     }
 }
