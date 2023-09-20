@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image');
             $table->tinyInteger('type')->default(typeQuestionEnum::SINGLE['value']);
-            $table->foreignId('test_id')->constrained();
+            $table->foreignId('test_id')->constrained('tests')->cascadeOnDelete();
             $table->timestamps();
         });
     }

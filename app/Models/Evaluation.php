@@ -7,16 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
-class Question extends Model
+class Evaluation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'description',
-        'image',
-        'type',
-        'test_id'
+        'student_id',
+        'test_id',
+        'start',
+        'finish',
+        'qualification',
+        'answers_fine',
+        'answers_bad'
     ];
 
     public function test(): BelongsTo
@@ -24,8 +26,14 @@ class Question extends Model
         return $this->belongsTo(Test::class);
     }
 
+    public function student(): BelongsTo
+    {
+        return $this->belongsTo(Student::class);
+    }
+
     public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
     }
+
 }

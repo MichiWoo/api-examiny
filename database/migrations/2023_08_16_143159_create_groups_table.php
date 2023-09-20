@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->tinyInteger('status')->default(statusEnum::ACTIVATED['value']);
             $table->timestamps();
         });

@@ -58,12 +58,13 @@ class UserSeeder extends Seeder
         
 
         $user1 = User::create([
-            'name' => 'Michel González Morales',
-            'email' => 'examiny_admin@gmail.com',
+            'name' => 'Michel González',
+            'email' => 'michiwoo.web@gmail.com',
             'email_verified_at' => now(),
             'plan_id' => 1,
-            'password' => Hash::make('secret'),
-            'avatar' => $faker->imageUrl(200, 200, 'people')
+            'password' => null,
+            'google_id' => '117326424736203972673',
+            'avatar' => 'https://lh3.googleusercontent.com/a/ACg8ocKhxEiIpB8kM9Ov6itZvySkjvGD2uO_38bvXJL6LmN5OJE=s96-c'
         ]);
         
         $user2 = User::create([

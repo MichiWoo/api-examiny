@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image');
             $table->integer('correct');
-            $table->foreignId('question_id')->constrained();
+            $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete();
             $table->timestamps();
         });
     }
