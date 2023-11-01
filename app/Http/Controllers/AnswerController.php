@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AnswerResource;
 use App\Models\Answer;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,14 @@ class AnswerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($idQuestion)
     {
-        $answers = Answer::all();
-        $answers->load('question');
-        return response()->json($answers);
+        $answers = Answer::where();
+        $answers->load('question_id', $idQuestion)->get();
+
+        $data = AnswerResource::collection($answers);
+
+        return $this->success('Información consultada correctamente', $data, 200);
     }
 
     /**
